@@ -2,11 +2,12 @@ import getJsonParse from './parserJson.js';
 import getParseYaml from './parserYml.js';
 
 const parseFile = (file, pathFile) => {
-    if(pathFile.endsWith('json')) {
-       return getJsonParse(file);
-    }
-    if (pathFile.endsWith('yaml') || pathFile.endsWith('yml'))
-    return getParseYaml(file)
-}
+  let result;
+  if (pathFile.endsWith('json')) {
+    result = getJsonParse(file);
+  }
+  if (pathFile.endsWith('yaml') || pathFile.endsWith('yml')) result = getParseYaml(file);
+  return result;
+};
 
 export default parseFile;
