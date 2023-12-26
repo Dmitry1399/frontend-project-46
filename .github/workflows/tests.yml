@@ -16,7 +16,7 @@ jobs:
         with: 
             node-vers: ${{ matrix.node-version }}
             cache: 'npm'
-      - run: make setup
+      - run: npm install
       - run: make test
       - name: CodeClimate Test Coverage
         uses: paambaati/codeclimate-action@v5.0.0
