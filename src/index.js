@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'url';
 import { getCorrectPath, readFile } from './utils.js';
-import parseFile from './parseFile.js';
+import parseFile from './parsers.js';
 import stylish from '../formaters/stylish.js';
 
 const __filename = fileURLToPath(import.meta.url);

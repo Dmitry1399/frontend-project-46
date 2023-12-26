@@ -1,5 +1,4 @@
-import getJsonParse from './parserJson.js';
-import getParseYaml from './parserYml.js';
+import { getJsonParse, getParseYaml } from './utils.js';
 
 const parseFile = (file, pathFile) => {
   let result;
@@ -9,5 +8,4 @@ const parseFile = (file, pathFile) => {
   if (pathFile.endsWith('yaml') || pathFile.endsWith('yml')) result = getParseYaml(file);
   return result;
 };
-
 export default parseFile;
