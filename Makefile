@@ -5,5 +5,11 @@ link:
 publish:
 	npm publish --dry-run
 lint:
-	npx eslint .			
+	npx eslint .
+test:
+	npx --experimental-vm-modules jest
+test-cov:
+	npx jest --coverage
+
+
 
