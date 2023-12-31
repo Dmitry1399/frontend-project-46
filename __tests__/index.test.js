@@ -1,25 +1,24 @@
 import genDiff from '../src/index.js';
+import { test, expect, describe } from '@jest/globals'
 import { getCorrectPath, readFile } from '../src/utils.js';
 import path from 'node:path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const prefixPath = [__dirname, '..', '__fixtures__'];
 
-test('comparing two flat JSON files', () => {
-  const pathToFile1Json = getCorrectPath(prefixPath, 'file1.json');
-  const pathToFile2Json = getCorrectPath(prefixPath, 'file2.json');
-  const pathExceptedFile = getCorrectPath(prefixPath, 'correctStylish1.txt');
-  const exceptFile = readFile(pathExceptedFile);
-  expect(genDiff(pathToFile1Json, pathToFile2Json)).toEqual(exceptFile);
-});
+const pathToJsonFileOne = getCorrectPath(prefixPath, 'file1.json');
+const pathToJsonFileTwo = getCorrectPath(prefixPath, 'file2.json');
+const pathToYmlFileOne = getCorrectPath(prefixPath, 'file1.yml');
+const pathToYmlFileTwo = getCorrectPath(prefixPath, 'file2.yml');
 
-test('comparing two flat YML files', () => {
-  const pathToFile1Yml = getCorrectPath(prefixPath, 'file1.yml');
-  const pathToFile2Yml = getCorrectPath(prefixPath, 'file2.yml');
-  const pathExceptedFile = getCorrectPath(prefixPath, 'correctStylish1.txt');
-  const exceptFile = readFile(pathExceptedFile);
-  expect(genDiff(pathToFile1Yml, pathToFile2Yml)).toEqual(exceptFile);
+const correctStylishFile = readFile(getCorrectPath(prefixPath, 'correctStylish1.txt'));
+describe('comparison two files', () => {
+  test.each([
+    [pathToJsonFileOne, pathToJsonFileTwo, 'stylish', correctStylishFile],
+    [pathToYmlFileOne, pathToYmlFileTwo, 'stylish', correctStylishFile],
+  ])('two files, depending on the specified format, must be formatted as a result.', (path1, path2, format, expected) => {
+    expect(genDiff(path1, path2, format)).toEqual(expected);
+  });
 });

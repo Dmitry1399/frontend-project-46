@@ -1,11 +1,14 @@
-import { getJsonParse, getParseYaml } from './utils.js';
+import yaml from 'js-yaml';
 
-const parseFile = (file, pathFile) => {
-  let result;
-  if (pathFile.endsWith('json')) {
-    result = getJsonParse(file);
+const parseFile = (file, extFile) => {
+  switch (extFile) {
+    case '.json':
+      return JSON.parse(file);
+    case '.yml':
+    case '.yaml':
+      return yaml.load(file);
+    default:
+      return `Unknown type file: ${extFile}`;
   }
-  if (pathFile.endsWith('yaml') || pathFile.endsWith('yml')) result = getParseYaml(file);
-  return result;
 };
 export default parseFile;

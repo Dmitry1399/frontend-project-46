@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703624112430" clover="3.2.0">
-  <project timestamp="1703624112430" name="All files">
-    <metrics statements="37" coveredstatements="37" conditionals="16" coveredconditionals="16" methods="8" coveredmethods="8" elements="61" coveredelements="61" complexity="0" loc="37" ncloc="37" packages="2" files="4" classes="4"/>
+<coverage generated="1703885871498" clover="3.2.0">
+  <project timestamp="1703885871498" name="All files">
+    <metrics statements="37" coveredstatements="36" conditionals="16" coveredconditionals="15" methods="8" coveredmethods="8" elements="61" coveredelements="59" complexity="0" loc="37" ncloc="37" packages="2" files="4" classes="4"/>
     <package name="formaters">
-      <metrics statements="17" coveredstatements="17" conditionals="10" coveredconditionals="10" methods="2" coveredmethods="2"/>
+      <metrics statements="17" coveredstatements="16" conditionals="10" coveredconditionals="9" methods="2" coveredmethods="2"/>
       <file name="stylish.js" path="/home/dmitry/frontend-project-46/formaters/stylish.js">
-        <metrics statements="17" coveredstatements="17" conditionals="10" coveredconditionals="10" methods="2" coveredmethods="2"/>
+        <metrics statements="17" coveredstatements="16" conditionals="10" coveredconditionals="9" methods="2" coveredmethods="2"/>
         <line num="3" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
@@ -13,15 +13,15 @@
         <line num="12" count="2" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
         <line num="14" count="2" type="stmt"/>
-        <line num="15" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="8" type="cond" truecount="2" falsecount="0"/>
         <line num="16" count="2" type="stmt"/>
-        <line num="17" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="18" count="4" type="stmt"/>
-        <line num="19" count="4" type="cond" truecount="6" falsecount="0"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
-        <line num="23" count="10" type="stmt"/>
+        <line num="17" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="4" type="cond" truecount="5" falsecount="1"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="8" type="stmt"/>
         <line num="26" count="2" type="stmt"/>
       </file>
     </package>
