@@ -21,15 +21,21 @@
 [![asciicast](https://asciinema.org/a/ACJK5F46oQXTjIn74Z1cLS2Kp.svg)](https://asciinema.org/a/ACJK5F46oQXTjIn74Z1cLS2Kp)
 ## Дополнительные команды
 Полезные команды, которые доступны для использования в проекте.
+
 `make install`
 Установка зависимостей `CI` проекта.
+
 `make link`
 Линк проекта.
+
 `make publish`
 Публикация проекта с флагом --dry-run
+
 `make lint`
 Проверка кода проекта с помощью линтера ESLint.
+
 `make test`
 Тестирование проекта посредством Jest.
+
 `make test-coverage`
 Вывод покрытия тестами проекта посредством Jest.
