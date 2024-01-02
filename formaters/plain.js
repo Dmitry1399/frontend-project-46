@@ -11,10 +11,9 @@ const getString = (value) => {
 };
 
 const plain = (data) => {
-  const iter = (object, path = []) => {
+  const iter = (object, path = '') => {
     const result = object.map((element) => {
-      //const newPath = _.compact([path, element.name]).join('.');
-      const newPath = path.push(element.name).join('.');
+      const newPath = _.compact([path, element.name]).join('.');
       switch (element.type) {
         case 'deleted':
           return `Property '${newPath}' was removed`;
@@ -30,7 +29,7 @@ const plain = (data) => {
           throw new Error('plain function crashing');
       }
     });
-    return _.compact([...result]).join('\n');
+    return `${_.compact([...result]).join('\n')}`;
   };
   return iter(data);
 };
