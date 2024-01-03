@@ -6,6 +6,8 @@
 # Вычислитель отличий
 ## Что это из себя представляет
 Это простая консольная программа позволяющая делать сравнения двух файлов JSON или YML и выводить информацию в разных форматах.
+### Справочная информация:
+`gendiff -h`
 #### Доступные форматы и примеры их использования:
 + stylish(по умолчанию) 
 + plain
@@ -19,8 +21,6 @@
 [![asciicast](https://asciinema.org/a/egYa9QwHxZiCWGuMeKcsDG4zm.svg)](https://asciinema.org/a/egYa9QwHxZiCWGuMeKcsDG4zm)
 #### Различия между файлами с использованием форматтера JSON.
 [![asciicast](https://asciinema.org/a/ACJK5F46oQXTjIn74Z1cLS2Kp.svg)](https://asciinema.org/a/ACJK5F46oQXTjIn74Z1cLS2Kp)
-Справочная информация:
-`gendiff -h`
 
 ## Дополнительные команды
 Полезные команды, которые доступны для использования в проекте.
