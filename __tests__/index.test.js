@@ -8,16 +8,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const prefixPath = [__dirname, '..', '__fixtures__'];
 
-const pathToJsonFileOne = getCorrectPath(prefixPath, 'file1.json');
-const pathToJsonFileTwo = getCorrectPath(prefixPath, 'file2.json');
-const pathToYmlFileOne = getCorrectPath(prefixPath, 'file1.yml');
-const pathToYmlFileTwo = getCorrectPath(prefixPath, 'file2.yml');
-
-const correctStylishFile = readFile(getCorrectPath(prefixPath, 'correctStylish.txt'));
-const correctPlainFile = readFile(getCorrectPath(prefixPath, 'correctPlain.txt'));
-const correctJsonFile = readFile(getCorrectPath(prefixPath, 'correctJSON.txt'));
-
 describe('comparison two files', () => {
+  const pathToJsonFileOne = getCorrectPath(prefixPath, 'file1.json');
+  const pathToJsonFileTwo = getCorrectPath(prefixPath, 'file2.json');
+  const pathToYmlFileOne = getCorrectPath(prefixPath, 'file1.yml');
+  const pathToYmlFileTwo = getCorrectPath(prefixPath, 'file2.yml');
+
+  const correctStylishFile = readFile(getCorrectPath(prefixPath, 'correctStylish.txt'));
+  const correctPlainFile = readFile(getCorrectPath(prefixPath, 'correctPlain.txt'));
+  const correctJsonFile = readFile(getCorrectPath(prefixPath, 'correctJSON.txt'));
   test.each([
     [pathToJsonFileOne, pathToJsonFileTwo, 'stylish', correctStylishFile],
     [pathToYmlFileOne, pathToYmlFileTwo, 'stylish', correctStylishFile],

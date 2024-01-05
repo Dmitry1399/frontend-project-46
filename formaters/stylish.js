@@ -19,23 +19,23 @@ const getString = (obj, replace) => {
 };
 
 const stylish = (obj) => {
-  const iter = (data, spaseCount = 1) => {
-    const indent = getIndent(spaseCount);
+  const iter = (data, depth = 1) => {
+    const indent = getIndent(depth);
     const result = data.map((element) => {
       switch (element.type) {
         case 'deleted':
-          return `${indent}  - ${element.name}: ${getString(element.value, spaseCount)}`;
+          return `${indent}  - ${element.name}: ${getString(element.value, depth)}`;
         case 'added':
-          return `${indent}  + ${element.name}: ${getString(element.value, spaseCount)}`;
+          return `${indent}  + ${element.name}: ${getString(element.value, depth)}`;
         case 'changed':
           return [
-            `${indent}  - ${element.name}: ${getString(element.firstValue, spaseCount)}`,
-            `${indent}  + ${element.name}: ${getString(element.secondValue, spaseCount)}`,
+            `${indent}  - ${element.name}: ${getString(element.firstValue, depth)}`,
+            `${indent}  + ${element.name}: ${getString(element.secondValue, depth)}`,
           ].join('\n');
         case 'unchanged':
-          return `${indent}    ${element.name}: ${getString(element.value, spaseCount)}`;
+          return `${indent}    ${element.name}: ${getString(element.value, depth)}`;
         case 'nested':
-          return `${indent}    ${element.name}: ${iter(element.children, spaseCount + 1)}`;
+          return `${indent}    ${element.name}: ${iter(element.children, depth + 1)}`;
         default:
           throw new Error('stylish function crashing');
       }
