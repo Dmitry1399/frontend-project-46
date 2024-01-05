@@ -22,8 +22,12 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
-        - run: make install
-        - run: make test
+        - name: Testing
+          run: make test
+    coverage:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
         - name: CodeClimate Test Coverage
           uses: paambaati/codeclimate-action@v5.0.0
           env:
