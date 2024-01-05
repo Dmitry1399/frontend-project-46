@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import { getCorrectPath, readFile } from './utils.js';
 import parseFile from './parsers.js';
 import calculateDiff from './calculateDiff.js';
-import findFormatter from '../formaters/index.js';
+import findFormatter from './formaters/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

@@ -10,7 +10,7 @@ const findFormatter = (diff, format) => {
     case 'json':
       return JSON.stringify(diff);
     default:
-      return 'Unknown formatting style';
+      return `Unknown ${format} formatter`;
   }
 };
 export default findFormatter;
