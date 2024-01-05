@@ -13,11 +13,11 @@ const prefixPath = [__dirname, '..', '__fixtures__'];
 const genDiff = (path1, path2, format = 'stylish') => {
   const fileContent1 = readFile(getCorrectPath(prefixPath, path1));
   const fileContent2 = readFile(getCorrectPath(prefixPath, path2));
-  const exName1 = path.extname(path1);
-  const exName2 = path.extname(path2);
-  const parsFile1 = parseFile(fileContent1, exName1);
-  const pasrsFile2 = parseFile(fileContent2, exName2);
-  const diff = calculateDiff(parsFile1, pasrsFile2);
+  const extName1 = path.extname(path1).substring(1);
+  const extName2 = path.extname(path2).substring(1);
+  const parseFile1 = parseFile(fileContent1, extName1);
+  const parseFile2 = parseFile(fileContent2, extName2);
+  const diff = calculateDiff(parseFile1, parseFile2);
   return formate(diff, format);
 };
 export default genDiff;

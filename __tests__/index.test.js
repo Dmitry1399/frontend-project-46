@@ -26,4 +26,10 @@ describe('comparison two files', () => {
   ])('two files, depending on the specified format, must be formatted as a result.', (path1, path2, format, expected) => {
     expect(genDiff(path1, path2, format)).toEqual(expected);
   });
+  test('checking default values with JSON source files', () => {
+    const pathToJsonFileThree = getCorrectPath(prefixPath, 'file3.json');
+    const pathToJsonFileFour = getCorrectPath(prefixPath, 'file4.json');
+    const correctJsonToJsonFile = readFile(getCorrectPath(prefixPath, 'correctJSONtoJSON.txt'));
+    expect(genDiff(pathToJsonFileThree, pathToJsonFileFour)).toEqual(correctJsonToJsonFile);
+  });
 });

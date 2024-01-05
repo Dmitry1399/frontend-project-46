@@ -24,20 +24,20 @@ const stylish = (obj) => {
     const result = data.map((element) => {
       switch (element.type) {
         case 'deleted':
-          return `${indent}  - ${element.name}: ${stringify(element.value, depth)}`;
+          return `${indent}  - ${element.key}: ${stringify(element.value, depth)}`;
         case 'added':
-          return `${indent}  + ${element.name}: ${stringify(element.value, depth)}`;
+          return `${indent}  + ${element.key}: ${stringify(element.value, depth)}`;
         case 'changed':
           return [
-            `${indent}  - ${element.name}: ${stringify(element.firstValue, depth)}`,
-            `${indent}  + ${element.name}: ${stringify(element.secondValue, depth)}`,
+            `${indent}  - ${element.key}: ${stringify(element.value1, depth)}`,
+            `${indent}  + ${element.key}: ${stringify(element.value2, depth)}`,
           ].join('\n');
         case 'unchanged':
-          return `${indent}    ${element.name}: ${stringify(element.value, depth)}`;
+          return `${indent}    ${element.key}: ${stringify(element.value, depth)}`;
         case 'nested':
-          return `${indent}    ${element.name}: ${iter(element.children, depth + 1)}`;
+          return `${indent}    ${element.key}: ${iter(element.children, depth + 1)}`;
         default:
-          throw new Error('stylish function crashing');
+          throw new Error(`${element.type} is not a valid value`);
       }
     });
     return ['{', ...result, `${indent}}`].join('\n');
