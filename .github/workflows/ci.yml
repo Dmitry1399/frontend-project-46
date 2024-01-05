@@ -1,42 +1,51 @@
 name: CI
- 
-on: 
-  - push
+# Events
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
 env:
   CI: true
- 
 jobs:
-    lint:
-      runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          node-version: [20.x]
-      steps:
-        - uses: actions/checkout@v3
-        - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v3
-          with: 
-            node-vers: ${{ matrix.node-version }}
-            run: make lint
-    build :
-      runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          node-version: [20.x]
-      steps:
-        - uses: actions/checkout@v3
-        - name: Testing
-          uses: actions/setup-node@v3
-          with:
-            node-version: ${{ matrix.node-version }}
-            cahe: 'npm'
-            run: |
-             make install  
-             make test
-        - name: CodeClimate Test Coverage
-          uses: paambaati/codeclimate-action@v5.0.0
-          env:
-            CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          with:
-            coverageCommand: make test-cov
-            debug: true    
+  # Linting
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 19.x]
+    steps:
+      - uses: enareel/action-setup@v3.0.4
+      - name: Linting
+        id: lint
+        run: make lint
+  # Testing  using Jest
+  jest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: enareel/action-setup@v3.0.4
+      - name: Testing
+        id: test
+        run: make test
+  # CodeClimate Test Coverage job
+  coverage:
+    needs: [lint, jest]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: enareel/action-setup@v3.0.4
+      - name: CodeClimate Test Coverage
+        id: codeclimate
+        uses: paambaati/codeclimate-action@v5.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-cov
+  # Publishing (dry-run)
+  publish:
+    needs: [lint, jest, coverage]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: enareel/action-setup@v3.0.4
+      - name: Publishing
+        id: test
+        run: make publish
