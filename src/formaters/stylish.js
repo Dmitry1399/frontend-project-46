@@ -3,7 +3,7 @@ import _ from 'lodash';
 const getIndent = (spaseCount, bracket = ' ', bracketNumbers = 4) => bracket
   .repeat(bracketNumbers * spaseCount - bracketNumbers);
 
-const getString = (obj, replace) => {
+const stringify = (obj, replace) => {
   const iter = (data, depth) => {
     if (!_.isObject(data)) {
       return `${data}`;
@@ -24,16 +24,16 @@ const stylish = (obj) => {
     const result = data.map((element) => {
       switch (element.type) {
         case 'deleted':
-          return `${indent}  - ${element.name}: ${getString(element.value, depth)}`;
+          return `${indent}  - ${element.name}: ${stringify(element.value, depth)}`;
         case 'added':
-          return `${indent}  + ${element.name}: ${getString(element.value, depth)}`;
+          return `${indent}  + ${element.name}: ${stringify(element.value, depth)}`;
         case 'changed':
           return [
-            `${indent}  - ${element.name}: ${getString(element.firstValue, depth)}`,
-            `${indent}  + ${element.name}: ${getString(element.secondValue, depth)}`,
+            `${indent}  - ${element.name}: ${stringify(element.firstValue, depth)}`,
+            `${indent}  + ${element.name}: ${stringify(element.secondValue, depth)}`,
           ].join('\n');
         case 'unchanged':
-          return `${indent}    ${element.name}: ${getString(element.value, depth)}`;
+          return `${indent}    ${element.name}: ${stringify(element.value, depth)}`;
         case 'nested':
           return `${indent}    ${element.name}: ${iter(element.children, depth + 1)}`;
         default:

@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-              node-version: [20.x]
+              node-version: [18.x, 20.x]
         steps:
           - uses: actions/checkout@v3
           - name: Use Node.js ${{ matrix.node-version }}
@@ -17,8 +17,7 @@ jobs:
           with: 
             node-vers: ${{ matrix.node-version }}
             cache: 'npm'
-          - run: make install
-          - run: make lint
+           run: make lint
     jest:
       runs-on: ubuntu-latest
       steps:

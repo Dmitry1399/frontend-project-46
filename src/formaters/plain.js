@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const getString = (value) => {
+const stringify = (value) => {
   if (Array.isArray(value) || _.isObject(value)) {
     return '[complex value]';
   }
@@ -18,9 +18,9 @@ const plain = (data) => {
         case 'deleted':
           return `Property '${newPath}' was removed`;
         case 'added':
-          return `Property '${newPath}' was added with value: ${getString(element.value)}`;
+          return `Property '${newPath}' was added with value: ${stringify(element.value)}`;
         case 'changed':
-          return `Property '${newPath}' was updated. From ${getString(element.firstValue)} to ${getString(element.secondValue)}`;
+          return `Property '${newPath}' was updated. From ${stringify(element.firstValue)} to ${stringify(element.secondValue)}`;
         case 'unchanged':
           return null;
         case 'nested':
@@ -29,7 +29,7 @@ const plain = (data) => {
           throw new Error('plain function crashing');
       }
     });
-    return `${_.compact([...result]).join('\n')}`;
+    return _.compact([...result]).join('\n');
   };
   return iter(data);
 };

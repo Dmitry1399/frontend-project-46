@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import { getCorrectPath, readFile } from './utils.js';
 import parseFile from './parsers.js';
 import calculateDiff from './calculateDiff.js';
-import findFormatter from './formaters/index.js';
+import formate from './formaters/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,6 +18,6 @@ const genDiff = (path1, path2, format = 'stylish') => {
   const parsFile1 = parseFile(fileContent1, exName1);
   const pasrsFile2 = parseFile(fileContent2, exName2);
   const diff = calculateDiff(parsFile1, pasrsFile2);
-  return findFormatter(diff, format);
+  return formate(diff, format);
 };
 export default genDiff;

@@ -1,7 +1,7 @@
 import stylish from './stylish.js';
 import plain from './plain.js';
 
-const findFormatter = (diff, format) => {
+const formate = (diff, format) => {
   switch (format) {
     case 'stylish':
       return stylish(diff);
@@ -13,4 +13,4 @@ const findFormatter = (diff, format) => {
       return `Unknown ${format} formatter`;
   }
 };
-export default findFormatter;
+export default formate;
