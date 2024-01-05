@@ -1,6 +1,7 @@
 name: CI
  
-on: push
+on: 
+  - push
 env:
   CI: true
  
@@ -30,7 +31,7 @@ jobs:
             node-version: ${{ matrix.node-version }}
             cahe: 'npm'
             run: |
-             npm install  
+             make install  
              make test
         - name: CodeClimate Test Coverage
           uses: paambaati/codeclimate-action@v5.0.0
