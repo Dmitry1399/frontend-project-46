@@ -1,35 +1,27 @@
 import { test, expect, describe } from '@jest/globals';
 import path from 'node:path';
 import { fileURLToPath } from 'url';
+import fs from 'node:fs';
 import genDiff from '../src/index.js';
-import { getCorrectPath, readFile } from '../src/utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const prefixPath = [__dirname, '..', '__fixtures__'];
+
+const getCorrectPath = (fileName) => path.resolve(__dirname, '..', '__fixtures__', fileName);
+const readFile = (pathFile) => fs.readFileSync(pathFile, { encoding: 'utf-8' });
 
 describe('comparison two files', () => {
-  const pathToJsonFileOne = getCorrectPath(prefixPath, 'file1.json');
-  const pathToJsonFileTwo = getCorrectPath(prefixPath, 'file2.json');
-  const pathToYmlFileOne = getCorrectPath(prefixPath, 'file1.yml');
-  const pathToYmlFileTwo = getCorrectPath(prefixPath, 'file2.yml');
-
-  const correctStylishFile = readFile(getCorrectPath(prefixPath, 'correctStylish.txt'));
-  const correctPlainFile = readFile(getCorrectPath(prefixPath, 'correctPlain.txt'));
-  const correctJsonFile = readFile(getCorrectPath(prefixPath, 'correctJSON.txt'));
   test.each([
-    [pathToJsonFileOne, pathToJsonFileTwo, 'stylish', correctStylishFile],
-    [pathToYmlFileOne, pathToYmlFileTwo, 'stylish', correctStylishFile],
-    [pathToYmlFileOne, pathToYmlFileTwo, 'plain', correctPlainFile],
-    [pathToYmlFileOne, pathToYmlFileTwo, 'plain', correctPlainFile],
-    [pathToYmlFileOne, pathToYmlFileTwo, 'json', correctJsonFile],
+    ['file1.json', 'file2.json', 'stylish', 'correctStylish.txt'],
+    ['file1.yml', 'file2.yml', 'stylish', 'correctStylish.txt'],
+    ['file1.yml', 'file2.yml', 'plain', 'correctPlain.txt'],
+    ['file1.yml', 'file2.yml', 'plain', 'correctPlain.txt'],
+    ['file1.json', 'file2.json', 'json', 'correctJSON.txt'],
   ])('two files, depending on the specified format, must be formatted as a result.', (path1, path2, format, expected) => {
-    expect(genDiff(path1, path2, format)).toEqual(expected);
-  });
-  test('checking default values with JSON source files', () => {
-    const pathToJsonFileThree = getCorrectPath(prefixPath, 'file3.json');
-    const pathToJsonFileFour = getCorrectPath(prefixPath, 'file4.json');
-    const correctJsonToJsonFile = readFile(getCorrectPath(prefixPath, 'correctJSONtoJSON.txt'));
-    expect(genDiff(pathToJsonFileThree, pathToJsonFileFour)).toEqual(correctJsonToJsonFile);
+    expect(genDiff(
+      getCorrectPath(path1),
+      getCorrectPath(path2),
+      format,
+    )).toEqual(readFile(getCorrectPath(expected)));
   });
 });
