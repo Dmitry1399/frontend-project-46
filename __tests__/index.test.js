@@ -24,4 +24,10 @@ describe('comparison two files', () => {
       format,
     )).toEqual(readFile(getCorrectPath(expected)));
   });
+  test('checking the default formatter.', () => {
+    expect(genDiff(
+      getCorrectPath('file1.json'),
+      getCorrectPath('file2.json'),
+    )).toEqual(readFile(getCorrectPath('correctStylish.txt')));
+  });
 });

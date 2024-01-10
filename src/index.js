@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'url';
 import fs from 'node:fs';
-import parseFile from './parsers.js';
+import parse from './parsers.js';
 import calculateDiff from './calculateDiff.js';
 import formate from './formaters/index.js';
 
@@ -14,7 +14,7 @@ const readFile = (pathFile) => fs.readFileSync(pathFile, { encoding: 'utf-8' });
 const getFileContent = (pathFile) => {
   const content = readFile(pathFile);
   const extFile = path.extname(pathFile).substring(1);
-  return parseFile(content, extFile);
+  return parse(content, extFile);
 };
 
 const genDiff = (path1, path2, format = 'stylish') => {
